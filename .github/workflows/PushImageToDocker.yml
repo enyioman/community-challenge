@@ -24,7 +24,7 @@ jobs:
           context: .
           push: true
           tags: fynewily/hostspace-challenge:frontend-v1.0
-          dockerfile: frontend.Dockerfile
+          file: frontend.Dockerfile
       
       - name: Build and push backend Docker image
         uses: docker/build-push-action@v4
@@ -32,4 +32,4 @@ jobs:
           context: .
           push: true
           tags: fynewily/hostspace-challenge:backend-v1.0
-          dockerfile: backend.Dockerfile
+          file: backend.Dockerfile
