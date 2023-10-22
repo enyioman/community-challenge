@@ -11,6 +11,13 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
+
+      - name: Read and increment version
+        run: |
+          current_version=$(cat VERSION)
+          new_version=$(echo "$current_version + 0.1" | bc)
+          echo $new_version > VERSION
+          echo "BUILD_VERSION=$new_version" >> $GITHUB_ENV
       
       - name: Login to Docker Hub
         uses: docker/login-action@v2
@@ -23,7 +30,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: fynewily/hostspace-challenge:frontend-v1.0
+          tags: fynewily/hostspace-challenge:frontend-v${{ env.BUILD_VERSION }}
           file: frontend.Dockerfile
       
       - name: Build and push backend Docker image
@@ -31,5 +38,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: fynewily/hostspace-challenge:backend-v1.0
+          tags: fynewily/hostspace-challenge:backend-v${{ env.BUILD_VERSION }}
           file: backend.Dockerfile
