@@ -5,7 +5,7 @@ FROM python:3.9-alpine as flask-build
 WORKDIR /app
 
 # Copy main.py and requirements.txt to the working directory
-COPY main.py requirements.txt .
+COPY main.py requirements.txt ./
 
 # Install Python dependencies from requirements.txt
 RUN pip3 install --no-cache-dir -r requirements.txt
