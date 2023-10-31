@@ -4,12 +4,12 @@ on:
   workflow_call:
     inputs:
       tf_version:
-        description: 'Specifies version of Terraform to use. e.g: 1.1.0 Default=latest.'
+        description: 'TFC Version'
         required: false
         type: string
         default: latest
       gh_environment:
-        description: 'Specifies the GitHub deployment environment.'
+        description: 'GitHub Environment version'
         required: false
         type: string
         default: null
