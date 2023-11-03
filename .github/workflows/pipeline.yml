@@ -45,16 +45,11 @@ jobs:
       - name: "Terraform Plan"
         uses: "enyioman/community-challenge/.github/workflows/aws_tf_plan.yml@main"
         with:
-          gh_environment: "dev"
-        secrets:
           cli_config_credentials_token: "${{ secrets.TFC_API_TOKEN }}" 
 
       - name: "Terraform Apply"
-        needs: "Terrform Plan"
         uses: "enyioman/community-challenge/.github/workflows/aws_tf_apply.yml@main"
         with:
-          gh_environment: "dev"
-        secrets:
           cli_config_credentials_token: "${{ secrets.TFC_API_TOKEN }}"
 
       - name: "Install kubectl"
