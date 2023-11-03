@@ -21,7 +21,7 @@ backend "remote" {
 		organization = "yorman"
 
 		workspaces {
-			name = "Hostspace-local"
+			name = "Hostspace"
 		}
 	}
 }
