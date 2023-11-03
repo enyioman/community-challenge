@@ -51,6 +51,26 @@ jobs:
       #   uses: "enyioman/community-challenge/.github/workflows/aws_tf_apply.yml@main"
       #   with:
       #     cli_config_credentials_token: "${{ secrets.TFC_API_TOKEN }}"
+      - name: "Terraform Plan"
+        uses: hashicorp/setup-terraform@v2
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      - name: Terraform Init
+        id: init
+        run: terraform init
+      
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan
+        continue-on-error: true
+
+      - name: Terraform Plan Status
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
 
       - name: "Install kubectl"
         uses: "azure/setup-kubectl@v2.0"
@@ -63,7 +83,7 @@ jobs:
         with:
           aws-access-key-id: "${{ secrets.AWS_ACCESS_KEY_ID }}"
           aws-secret-access-key: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
-          aws-region: "us-east-2"
+          aws-region: "us-east-1"
 
       - name: "Update kube config"
         run: "aws eks update-kubeconfig --name hostspace"
