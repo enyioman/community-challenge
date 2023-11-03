@@ -51,6 +51,10 @@ jobs:
       #   uses: "enyioman/community-challenge/.github/workflows/aws_tf_apply.yml@main"
       #   with:
       #     cli_config_credentials_token: "${{ secrets.TFC_API_TOKEN }}"
+
+      - name: Change to Terraform Directory
+        run: cd ./Terraform
+        
       - name: "Terraform Plan"
         uses: hashicorp/setup-terraform@v2
         with:
@@ -71,6 +75,9 @@ jobs:
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
         run: exit 1
+      
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
 
       - name: "Install kubectl"
         uses: "azure/setup-kubectl@v2.0"
