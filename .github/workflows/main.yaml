@@ -47,8 +47,7 @@ jobs:
     steps:
       - name: "Terraform Plan"
         uses: "enyioman/community-challenge/.github/workflows/aws_tf_plan.yml@main"
-        run: |
-          echo "This is the plan step."
+        
 
   Apply:
     needs: "Plan"
@@ -56,8 +55,7 @@ jobs:
     steps:
       - name: "Terraform Apply"
         uses: "enyioman/community-challenge/.github/workflows/aws_tf_apply.yml@main"
-        run: |
-          echo "This is the apply step."
+        
 
   Install_Kubectl:
     name: "Install kubectl"
