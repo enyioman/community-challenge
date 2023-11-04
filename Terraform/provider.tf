@@ -21,7 +21,7 @@ terraform {
     organization = "yorman"
 
     workspaces {
-      name = "Hostspace"
+      name = "Hostspace-API"
     }
   }
 }
