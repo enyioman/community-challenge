@@ -67,7 +67,7 @@ jobs:
         if: steps.plan.outcome == 'failure'
         run: exit 1
       
-      - name: terraform apply
+      - name: Terraform Apply
         env:
           TERRAFORM_CLOUD_TOKENS: ${{ secrets.HOSTNAME }}=${{ secrets.TOKEN }}
         uses: dflook/terraform-apply@v1
