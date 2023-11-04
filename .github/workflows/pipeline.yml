@@ -93,7 +93,7 @@ jobs:
           aws-secret-access-key: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
           aws-region: "us-east-1"
 
-      - name: "Update kube config"
+      - name: "Update Kube Config"
         run: "aws eks update-kubeconfig --name hostspace"
 
       - name: "Deploy to EKS"
