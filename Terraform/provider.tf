@@ -16,14 +16,15 @@ terraform {
     }
   }
 
-backend "remote" {
-		hostname = "app.terraform.io"
-		organization = "yorman"
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "yorman"
+    token        = var.token
 
-		workspaces {
-			name = "Hostspace"
-		}
-	}
+    workspaces {
+      name = "Hostspace"
+    }
+  }
 }
 
 
@@ -42,7 +43,7 @@ provider "kubernetes" {
 
 
 provider "aws" {
-  region = "us-east-1"
+  region     = "us-east-1"
   access_key = var.aws_access_key
   secret_key = var.aws_secret_key
 }
