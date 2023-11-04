@@ -90,7 +90,7 @@ jobs:
           aws-region: "us-east-1"
 
       - name: "Update Kube Config"
-        run: "aws eks update-kubeconfig --name ${{ steps.terraform-apply.outputs.cluster_name }}
+        run: "aws eks update-kubeconfig --name ${{ steps.terraform-apply.outputs.cluster_name }}"
 
       - name: "Deploy to EKS"
         run: |
