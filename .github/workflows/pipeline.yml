@@ -7,7 +7,7 @@ on:
 
 jobs:
   build_and_deploy:
-    name: "Pipeline initialization"
+    name: "Hostspace Pipeline"
     runs-on: "ubuntu-latest"
     steps:
       - name: "Check out the repo"
@@ -42,16 +42,6 @@ jobs:
           tags: "fynewily/hostspace-challenge:backend-v${{ env.BUILD_VERSION }}"
           file: "backend.Dockerfile"
 
-      # - name: "Terraform Plan"
-      #   uses: "enyioman/community-challenge/.github/workflows/aws_tf_plan.yml@main"
-      #   with:
-      #     cli_config_credentials_token: "${{ secrets.TFC_API_TOKEN }}" 
-
-      # - name: "Terraform Apply"
-      #   uses: "enyioman/community-challenge/.github/workflows/aws_tf_apply.yml@main"
-      #   with:
-      #     cli_config_credentials_token: "${{ secrets.TFC_API_TOKEN }}"
-
       - name: "Terraform Plan"
         uses: hashicorp/setup-terraform@v2
         with:
@@ -78,6 +68,7 @@ jobs:
         run: exit 1
       
       - name: Terraform Apply
+        id: apply
         run: terraform apply -auto-approve
         working-directory: ./Terraform
 
