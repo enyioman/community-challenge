@@ -74,11 +74,6 @@ jobs:
         with:
           path: ./Terraform
           auto_approve: true
-      
-      # - name: Terraform Apply
-      #   id: apply
-      #   run: terraform apply -auto-approve
-      #   working-directory: ./Terraform
 
       - name: "Install kubectl"
         uses: "azure/setup-kubectl@v2.0"
@@ -94,7 +89,7 @@ jobs:
           aws-region: "us-east-1"
 
       - name: "Update Kube Config"
-        run: "aws eks update-kubeconfig --name hostspace"
+        run: "aws eks update-kubeconfig --name ${cluster_name}"
 
       - name: "Deploy to EKS"
         run: |
