@@ -19,7 +19,6 @@ terraform {
   backend "remote" {
     hostname     = "app.terraform.io"
     organization = "yorman"
-    token        = var.token
 
     workspaces {
       name = "Hostspace"

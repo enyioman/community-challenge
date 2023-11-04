@@ -69,7 +69,8 @@ jobs:
       
       - name: terraform apply
         env:
-          TERRAFORM_CLOUD_TOKENS: app.terraform.io=${{ secrets.TF_CLOUD_TOKEN }}
+          TERRAFORM_CLOUD_TOKENS: ${{ secrets.TOKEN }}
+          TERRAFORM_CLOUD_HOSTNAME: ${{ secrets.HOSTNAME }}
         uses: dflook/terraform-apply@v1
         with:
           path: ./Terraform
