@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hostspace-backend
+  namespace: hostspace-namespace
+  labels:
+    app: hostspace-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hostspace-backend
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: hostspace-backend
+        tier: backend
+    spec:
+      containers:
+        - name: hostspace-backend
+          image: fynewily/hostspace-challenge:backend-v1.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000

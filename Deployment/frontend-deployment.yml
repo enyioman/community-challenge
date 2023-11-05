@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hostspace-frontend
+  namespace: hostspace-namespace
   labels:
     app: hostspace-frontend
 spec:
@@ -9,14 +10,16 @@ spec:
   selector:
     matchLabels:
       app: hostspace-frontend
+      tier: frontend
   template:
     metadata:
       labels:
         app: hostspace-frontend
+        tier: frontend
     spec:
       containers:
         - name: hostspace-frontend
-          image: 274127640471.dkr.ecr.us-east-2.amazonaws.com/primuslearning:1.1
+          image: fynewily/hostspace-challenge:frontend-v1.1
           imagePullPolicy: Always
           ports:
-            - containerPort: 8080
+            - containerPort: 80
