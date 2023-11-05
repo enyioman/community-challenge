@@ -21,5 +21,5 @@ variable "rt_route_cidr_block" {
 
 variable "aws_public_subnet" {
   type    = list(string)
-  default = ["use1-az1", "use1-az1", "use1-az3"]
+  default = ["use1-az1", "use1-az2", "use1-az3"]
 }
