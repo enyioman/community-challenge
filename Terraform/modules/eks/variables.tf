@@ -4,7 +4,10 @@ variable "aws_key_pair" {
   default = "devsecops"
 }
 
-variable "aws_public_subnet" {}
+variable "aws_public_subnet" {
+  type    = list(string)
+  default = ["subnet-us-east-1a", "subnet-us-east-1b", "subnet-us-east-1c"]
+}
 
 variable "vpc_id" {}
 
