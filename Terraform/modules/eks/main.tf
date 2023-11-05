@@ -1,9 +1,21 @@
+data "aws_availability_zones" "available" {}
+
+data "aws_subnet_ids" "selected" {
+  for_each = toset(data.aws_availability_zones.available.names)
+
+  vpc_id = var.vpc_id
+  filter  {
+    name   = "availabilityZone"
+    values = [each.key]
+  }
+}
+
 resource "aws_eks_cluster" "hostspace" {
   name     = var.cluster_name
   role_arn = aws_iam_role.hostspace.arn
 
   vpc_config {
-    subnet_ids              = var.aws_public_subnet
+    subnet_ids              = values(data.aws_subnet_ids.selected)[*].ids
     endpoint_public_access  = var.endpoint_public_access
     endpoint_private_access = var.endpoint_private_access
     public_access_cidrs     = var.public_access_cidrs
