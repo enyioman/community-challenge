@@ -28,7 +28,8 @@ resource "aws_subnet" "public_hostspace_subnet" {
   count                   = var.public_sn_count
   vpc_id                  = aws_vpc.hostspace.id
   cidr_block              = var.public_cidrs[count.index]
-  availability_zone       = random_shuffle.az_list.result[count.index]
+  # availability_zone       = random_shuffle.az_list.result[count.index]
+  availability_zone_id    = element(var.aws_public_subnet, count.index % length(var.aws_public_subnet))
   map_public_ip_on_launch = var.map_public_ip_on_launch
   tags = {
     Name = var.tags
