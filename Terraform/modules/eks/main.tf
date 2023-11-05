@@ -18,7 +18,7 @@ resource "aws_eks_cluster" "hostspace" {
   role_arn = aws_iam_role.hostspace.arn
 
   vpc_config {
-    subnet_ids              = values(data.aws_subnets.selected)[*].ids
+    subnet_ids              = flatten([for subnet in values(data.aws_subnets.selected) : subnet.ids])
     endpoint_public_access  = var.endpoint_public_access
     endpoint_private_access = var.endpoint_private_access
     public_access_cidrs     = var.public_access_cidrs
