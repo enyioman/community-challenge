@@ -6,7 +6,7 @@ variable "aws_key_pair" {
 
 variable "aws_public_subnet" {
   type    = list(string)
-  default = ["subnet-us-east-1a", "subnet-us-east-1b", "subnet-us-east-1c"]
+  default = ["use1-az1", "use1-az1", "use1-az3"]
 }
 
 variable "vpc_id" {}
