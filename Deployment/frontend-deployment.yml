@@ -20,7 +20,6 @@ spec:
       containers:
         - name: hostspace-frontend
           image: fynewily/hostspace-challenge:frontend-v1.1
-          imagePullPolicy: Always
           ports:
             - containerPort: 80
           env:
