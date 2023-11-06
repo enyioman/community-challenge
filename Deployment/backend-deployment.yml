@@ -23,3 +23,6 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
+          envFrom:
+          - secretRef:
+              name: hostspace-secrets

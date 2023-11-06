@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hostspace-configmap
+  namespace: hostspace-namespace
+data:
+  vue_app_proxy_url: 'http://127.0.0.1:5000/'

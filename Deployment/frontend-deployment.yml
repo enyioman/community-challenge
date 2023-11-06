@@ -23,3 +23,9 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 80
+          env:
+          - name: VUE_APP_PROXY_URL
+            valueFrom:
+              configMapKeyRef:
+                name: hostspace-configmap
+                key: vue_app_proxy_url
