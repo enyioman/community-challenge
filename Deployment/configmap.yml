@@ -4,4 +4,4 @@ metadata:
   name: hostspace-configmap
   namespace: hostspace-namespace
 data:
-  vue_app_proxy_url: 'http://hostspace-backend:5000/'
+  vue_app_proxy_url: 'http://hostspace-backend:5000'
