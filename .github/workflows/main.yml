@@ -29,6 +29,40 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
+      - name: "Terraform Plan"
+        uses: hashicorp/setup-terraform@v2
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+        working-directory: ./Terraform
+      
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate
+        working-directory: ./Terraform
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan
+        working-directory: ./Terraform
+        continue-on-error: true
+
+      - name: Terraform Plan Status
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
+      
+      - name: Terraform Apply
+        env:
+          TERRAFORM_CLOUD_TOKENS: ${{ secrets.HOSTNAME }}=${{ secrets.TOKEN }}
+        uses: dflook/terraform-apply@v1
+        with:
+          path: ./Terraform
+          auto_approve: true
+          output: "cluster_name"
+
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
