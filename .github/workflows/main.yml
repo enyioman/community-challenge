@@ -41,7 +41,7 @@ jobs:
         run: |
           docker compose -p $IMAGE_TAG create
 
-          docker images
+          docker images ls
 
           docker tag hostspace-frontend:latest $ECR_REGISTRY/$ECR_REPOSITORY_FRONTEND:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY_FRONTEND:$IMAGE_TAG
