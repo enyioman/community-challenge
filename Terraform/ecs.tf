@@ -28,7 +28,7 @@ resource "aws_ecs_service" "HostSpaceClusterService" {
 resource "aws_ecs_task_definition" "HostspaceTaskDefinition" {
   container_definitions = jsonencode([
     {
-      name      = "frontend"
+      name      = "hostspace-frontend"
       image     = "335081657283.dkr.ecr.us-east-2.amazonaws.com/frontend:latest"
       cpu       = 256
       memory    = 512
@@ -44,7 +44,7 @@ resource "aws_ecs_task_definition" "HostspaceTaskDefinition" {
     },
 
     {
-      name      = "backend"
+      name      = "hostspace-backend"
       image     = "335081657283.dkr.ecr.us-east-2.amazonaws.com/backend:latest"
       cpu       = 256
       memory    = 512

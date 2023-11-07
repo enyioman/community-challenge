@@ -8,8 +8,8 @@ env:
   ECS_CLUSTER: HostspaceCluster
   ECR_REPOSITORY_FRONTEND: frontend
   ECR_REPOSITORY_BACKEND: backend  
-  CONTAINER_NAME_FRONTEND: frontend
-  CONTAINER_NAME_BACKEND: backend
+  CONTAINER_NAME_FRONTEND: hostspace-frontend
+  CONTAINER_NAME_BACKEND: hostspace-backend
   ECS_SERVICE: HostSpaceClusterService
   ECS_TASKDEFINITION: .github/workflows/td.json
 
