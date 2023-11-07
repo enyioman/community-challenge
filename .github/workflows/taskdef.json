@@ -1,0 +1,76 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:335081657283:task-definition/HostspaceTaskDefinition:1",
+    "containerDefinitions": [
+        {
+            "name": "frontend",
+            "image": "335081657283.dkr.ecr.us-east-2.amazonaws.com/frontend:latest",
+            "cpu": 256,
+            "memory": 512,
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": []
+        },
+        {
+            "name": "backend",
+            "image": "335081657283.dkr.ecr.us-east-2.amazonaws.com/backend:latest",
+            "cpu": 256,
+            "memory": 512,
+            "portMappings": [
+                {
+                    "containerPort": 5000,
+                    "hostPort": 5000,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": []
+        }
+    ],
+    "family": "HostspaceTaskDefinition",
+    "taskRoleArn": "arn:aws:iam::335081657283:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::335081657283:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "revision": 1,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "512",
+    "memory": "1024",
+    "registeredAt": "2023-11-07T20:58:54.564Z",
+    "registeredBy": "arn:aws:iam::335081657283:user/enyiomann",
+    "tags": []
+}
