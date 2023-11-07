@@ -44,7 +44,7 @@ resource "aws_ecs_task_definition" "HostspaceTaskDefinition" {
     },
 
     {
-      name      = "frontend"
+      name      = "backend"
       image     = "335081657283.dkr.ecr.us-east-2.amazonaws.com/backend:latest"
       cpu       = 256
       memory    = 512

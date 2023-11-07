@@ -43,7 +43,7 @@ jobs:
 
           docker images
 
-          docker tag hostspace-frontent:latest $ECR_REGISTRY/$ECR_REPOSITORY_FRONTEND:$IMAGE_TAG .
+          docker tag hostspace-frontend:latest $ECR_REGISTRY/$ECR_REPOSITORY_FRONTEND:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY_FRONTEND:$IMAGE_TAG
           echo "::set-output name=frontend-image::$ECR_REGISTRY/$ECR_REPOSITORY_FRONTEND:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
