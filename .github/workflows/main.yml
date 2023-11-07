@@ -39,8 +39,7 @@ jobs:
           ECR_REGISTRY: "335081657283.dkr.ecr.us-east-2.amazonaws.com"
           IMAGE_TAG: hostspace
         run: |
-          docker compose -p $IMAGE_TAG create
-
+          docker compose build
           docker images ls
 
           docker tag community-challenge_vue-frontend:latest $ECR_REGISTRY/$ECR_REPOSITORY_FRONTEND:$IMAGE_TAG .
