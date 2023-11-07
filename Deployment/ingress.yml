@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hostspace-ingress
+  namespace: hostspace-namespace
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+spec:
+  ingressClassName: alb
+  rules:
+    - host: frontend.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hostspace-frontend
+                port:
+                  number: 80
+    - host: backend.example.com
+      http:
+        paths:
+          - path: /proxy
+            pathType: Prefix
+            backend:
+              service:
+                name: hostspace-backend
+                port:
+                  number: 5000
+  defaultBackend:
+    service:
+      name: hostspace-frontend
+      port:
+        number: 80
