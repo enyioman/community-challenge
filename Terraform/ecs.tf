@@ -62,8 +62,8 @@ resource "aws_ecs_task_definition" "HostspaceTaskDefinition" {
   family                   = "HostspaceTaskDefinition"
   requires_compatibilities = ["FARGATE"]
 
-  cpu                = "256"
-  memory             = "512"
+  cpu                = "512"
+  memory             = "1024"
   network_mode       = "awsvpc"
   task_role_arn      = "arn:aws:iam::335081657283:role/ecsTaskExecutionRole"
   execution_role_arn = "arn:aws:iam::335081657283:role/ecsTaskExecutionRole"
