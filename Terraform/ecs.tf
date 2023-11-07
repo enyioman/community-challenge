@@ -29,7 +29,7 @@ resource "aws_ecs_task_definition" "HostspaceTaskDefinition" {
   container_definitions = jsonencode([
     {
       name      = "frontend"
-      image     = "335081657283.dkr.ecr.us-east-2.amazonaws.com/frontend:latest"
+      image     = "335081657283.dkr.ecr.us-east-1.amazonaws.com/frontend:latest"
       cpu       = 256
       memory    = 512
       essential = true
@@ -45,7 +45,7 @@ resource "aws_ecs_task_definition" "HostspaceTaskDefinition" {
 
     {
       name      = "backend"
-      image     = "335081657283.dkr.ecr.us-east-2.amazonaws.com/backend:latest"
+      image     = "335081657283.dkr.ecr.us-east-1.amazonaws.com/backend:latest"
       cpu       = 256
       memory    = 512
       essential = true
