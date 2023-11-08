@@ -65,6 +65,47 @@ resource "aws_ecs_task_definition" "HostspaceTaskDefinition" {
   cpu                = "512"
   memory             = "1024"
   network_mode       = "awsvpc"
-  task_role_arn      = "arn:aws:iam::335081657283:role/ecsTaskExecutionRole"
-  execution_role_arn = "arn:aws:iam::335081657283:role/ecsTaskExecutionRole"
+  execution_role_arn = aws_iam_role.ecs_task_role.arn
+  task_role_arn      = aws_iam_role.ecs_task_role.arn
+  # task_role_arn      = "arn:aws:iam::335081657283:role/ecsTaskExecutionRole"
+  # execution_role_arn = "arn:aws:iam::335081657283:role/ecsTaskExecutionRole"
 }
+
+resource "aws_iam_role" "ecs_task_role" {
+  name = "ecs_task_role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [{
+      Action = "sts:AssumeRole",
+      Effect = "Allow",
+      Principal = {
+        Service = "ecs-tasks.amazonaws.com",
+      },
+    }],
+  })
+}
+
+resource "aws_iam_policy" "ecs_task_policy" {
+  name        = "ecs_task_policy"
+  description = "Policy for ECS tasks to write logs to CloudWatch Logs"
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [{
+      Action = [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+      ],
+      Effect   = "Allow",
+      Resource = "*",
+    }],
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "ecs_task_attachment" {
+  policy_arn = aws_iam_policy.ecs_task_policy.arn
+  role       = aws_iam_role.ecs_task_role.name
+}
+
