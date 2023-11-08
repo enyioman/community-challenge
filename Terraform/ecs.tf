@@ -88,19 +88,30 @@ resource "aws_iam_role" "ecs_task_role" {
 
 resource "aws_iam_policy" "ecs_task_policy" {
   name        = "ecs_task_policy"
-  description = "Policy for ECS tasks to write logs to CloudWatch Logs"
+  description = "Policy for ECS tasks to write logs to CloudWatch Logs and pull from ECR"
 
   policy = jsonencode({
     Version = "2012-10-17",
-    Statement = [{
-      Action = [
-        "logs:CreateLogGroup",
-        "logs:CreateLogStream",
-        "logs:PutLogEvents",
-      ],
-      Effect   = "Allow",
-      Resource = "*",
-    }],
+    Statement = [
+      {
+        Action   = [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents",
+        ],
+        Effect   = "Allow",
+        Resource = "*",
+      },
+      {
+        Action   = [
+          "ecr:GetAuthorizationToken",
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:BatchGetImage",
+        ],
+        Effect   = "Allow",
+        Resource = "*",
+      },
+    ],
   })
 }
 

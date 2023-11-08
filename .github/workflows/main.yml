@@ -71,7 +71,7 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: "335081657283.dkr.ecr.us-east-1.amazonaws.com"
-          IMAGE_TAG: hostspace
+          IMAGE_TAG: latest
         run: |
           docker compose build
           
