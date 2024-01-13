@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   # Vue.js Frontend Service
-  vue-frontend:
+  hostspace-frontend:
     build:
       context: .
       dockerfile: frontend.Dockerfile
@@ -9,10 +9,10 @@ services:
       - "80:80"
     container_name: frontend
     env_file:
-      - .env.vault
+      - .env
 
   # Flask Backend
-  flask-backend:
+  hostspace-backend:
     build:
       context: .
       dockerfile: backend.Dockerfile
@@ -23,4 +23,4 @@ services:
       - FLASK_APP=main.py
       - FLASK_ENV=development
     env_file:
-      - .env.vault
+      - .env

@@ -1,24 +1,24 @@
 #!/bin/bash
 
 echo "Applying Ingress..."
-kubectl apply -f Deployment/ingress.yml
+kubectl apply -f ingress.yml
 
 echo "Applying Secrets..."
-kubectl apply -f Deployment/secrets.yml
+kubectl apply -f secrets.yml
 
 echo "Applying ConfigMap..."
-kubectl apply -f Deployment/configmap.yml
+kubectl apply -f configmap.yml
 
 echo "Applying Backend Deployment..."
-kubectl apply -f Deployment/backend-deployment.yml
+kubectl apply -f backend-deployment.yml
 
 echo "Applying Backend Service..."
-kubectl apply -f Deployment/backend-service.yml
+kubectl apply -f backend-service.yml
 
 echo "Applying Frontend Deployment..."
-kubectl apply -f Deployment/frontend-deployment.yml
+kubectl apply -f frontend-deployment.yml
 
 echo "Applying Frontend Service..."
-kubectl apply -f Deployment/frontend-service.yml
+kubectl apply -f frontend-service.yml
 
 echo "Deployment completed successfully."

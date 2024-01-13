@@ -120,3 +120,4 @@ resource "aws_iam_role_policy_attachment" "ecs_task_attachment" {
   role       = aws_iam_role.ecs_task_role.name
 }
 
+
