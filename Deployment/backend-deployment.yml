@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: hostspace-backend
-          image: fynewily/hostspace-challenge:backend-v1.1
+          image: fynewily/hostspace-challenge:backend-v1.2
           ports:
             - containerPort: 5000
           envFrom:

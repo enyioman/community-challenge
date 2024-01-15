@@ -4,13 +4,12 @@ metadata:
   name: hostspace-ingress
   namespace: hostspace-namespace
   annotations:
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "nginx" 
 spec:
-  ingressClassName: alb
+  ingressClassName: nginx
   rules:
-    - host: frontend.example.com
-      http:
+     - http:
         paths:
           - path: /
             pathType: Prefix
@@ -19,8 +18,7 @@ spec:
                 name: hostspace-frontend
                 port:
                   number: 80
-    - host: backend.example.com
-      http:
+     - http:
         paths:
           - path: /proxy
             pathType: Prefix
@@ -28,9 +26,4 @@ spec:
               service:
                 name: hostspace-backend
                 port:
-                  number: 5000
-  defaultBackend:
-    service:
-      name: hostspace-frontend
-      port:
-        number: 80
+                  number: 5000              
